@@ -39,6 +39,9 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'sprockets-rails', '~> 3.0', '>= 3.0.4'
 gem 'jquery-rails'
 
+#api gem
+gem 'httparty', '~> 0.13.7'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
