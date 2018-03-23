@@ -10,7 +10,9 @@ class ApplicationController < ActionController::Base
     helper_method :current_user
 
     def authorize
-      flash[:error] = "Sign up or log in to access content"
-      redirect_to login_url if current_user.nil?
+      if current_user.nil?
+        flash[:error] = "Sign up or log in to access content"
+        redirect_to login_url
+      end
     end
 end

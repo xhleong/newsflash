@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   
   resource :sessions
 
-  resources :sources
+  resource :sources
 
 end

@@ -8,7 +8,11 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:success] = "Logged In"
-      redirect_to root_url
+      if current_user.admin
+        redirect_to admin_index_path
+      else
+        redirect_to root_url
+      end
     else
       flash[:error] = "Invalid email or password"
       render root_url
@@ -32,7 +36,8 @@ class SessionsController < ApplicationController
     authentication.update_token(auth_hash)
     @find_user = User.find_by_email(auth_hash[:info][:email])
     session[:user_id] = @find_user.id
-    @next = root_url
+    @next_admin = admin_index_path
+    @next_user = root_url
     @flash = "Successfully Signed In"
   # else: user logs in with OAuth for the first time
   else
@@ -40,12 +45,19 @@ class SessionsController < ApplicationController
     @find_user = User.find_by_email(auth_hash[:info][:email])
     session[:user_id] = @find_user.id
     # you are expected to have a path that leads to a page for editing user details
-    @next = 
+    @next_admin = admin_index_path
+    @next_user = root_url
     @notice = "User created. Please confirm or edit details"
   end
 
     login_path('user')
     flash[:success] = @flash
-    redirect_to @next
+    if current_user.admin
+      redirect_to @next_admin
+    else
+      redirect_to @next
+    end
+  
   end
+
 end
