@@ -15,4 +15,9 @@ class ApplicationController < ActionController::Base
         redirect_to login_url
       end
     end
+
+    def check_admin
+      !current_user.admin ? (redirect_to root_url) : (return)
+    end
+    
 end

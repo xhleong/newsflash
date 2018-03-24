@@ -10,12 +10,24 @@ Rails.application.routes.draw do
   #routing to provider authentication page
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
 
+  
+
   resources :users do
     resource :topics
   end
   
   resource :sessions
 
-  resource :sources
+  resources :sources do
+    collection do
+      get 'refresh', to: 'sources#import_sources', as: 'refresh'
+    end
+  end
+
+  resources :countries
+
+  resources :languages
+  
+  resources :categories
 
 end

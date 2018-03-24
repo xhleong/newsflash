@@ -2,3 +2,45 @@
 <p>Find me in app/views/admin/index.html.erb</p>
 
 Admin Page
+
+<p></p>
+<hr>
+Manage News Options:
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Area</th>
+      <th>Manage</th>
+      <th>Refresh Sources</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Portals</td>
+      <td>View/Manage</td>
+      <td><%= link_to 'Refresh Source Listing', refresh_sources_path, class:'btn btn-sm btn-info' %></td>
+    </tr>
+    <tr>
+      <td>Countries</td>
+      <td>View/Manage</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Languages</td>
+      <td>View/Manage</td>
+      <td></td>
+    </tr>
+      <tr>
+      <td>Categories</td>
+      <td>View/Manage</td>
+      <td></td>
+    </tr>
+  </tbody>
+
+</table>
+
+
+Sources
+
+

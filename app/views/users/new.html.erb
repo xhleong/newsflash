@@ -8,7 +8,7 @@ New User Form Page
 
   <p>
   <%= f.label :email %>
-  <%= f.text_field :email, required: 'required' %>
+  <%= f.text_field :email, type: 'email', required: 'required' %>
   </p>
 
   <p>
@@ -22,3 +22,4 @@ New User Form Page
 
 <% end %>
 
+<%= link_to 'Already have an account? Log In Now', login_path %>

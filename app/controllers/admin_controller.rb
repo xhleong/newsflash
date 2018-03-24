@@ -7,8 +7,5 @@ class AdminController < ApplicationController
 
   private
   
-  def check_admin
-    !current_user.admin ? (redirect_to root_url) : (return)
-  end
 
 end
