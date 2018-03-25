@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_03_23_062338) do
+ActiveRecord::Schema.define(version: 2018_03_24_085233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,53 @@ ActiveRecord::Schema.define(version: 2018_03_23_062338) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_authentications_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "category_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string "country_code"
+    t.string "country_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.string "language_code"
+    t.string "language_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sources", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.string "description"
+    t.string "url"
+    t.string "url_image"
+    t.string "category"
+    t.string "language_code"
+    t.string "country_code"
+    t.string "country_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "language"
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.text "languages", default: [], array: true
+    t.text "portals", default: [], array: true
+    t.text "categories", default: [], array: true
+    t.text "countries", default: [], array: true
+    t.text "keywords", default: [], array: true
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_topics_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

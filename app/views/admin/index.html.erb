@@ -1,0 +1,43 @@
+<h1>Admin#index</h1>
+<p>Find me in app/views/admin/index.html.erb</p>
+
+<p>Admin Page</p>
+
+
+<hr>
+Manage News Options:
+
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>Area</th>
+      <th>Manage</th>
+      <th>Refresh Sources</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Sources</td>
+      <td><%= link_to 'View/Manage', sources_path, class:'btn btn-sm btn-info' %></td>
+      <td><%= link_to 'Refresh Source Listing', refresh_sources_path, class:'btn btn-sm btn-warning' %></td>
+    </tr>
+    <tr>
+      <td>Countries</td>
+      <td><%= link_to 'View/Manage', countries_path, class:'btn btn-sm btn-info' %></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Languages</td>
+      <td><%= link_to 'View/Manage', languages_path, class:'btn btn-sm btn-info' %></td>
+      <td></td>
+    </tr>
+      <tr>
+      <td>Categories</td>
+      <td><%= link_to 'View/Manage', categories_path, class:'btn btn-sm btn-info' %></td>
+      <td></td>
+    </tr>
+  </tbody>
+
+</table>
+
+

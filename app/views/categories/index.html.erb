@@ -1,0 +1,58 @@
+<div id='list-categories'>
+
+<p></p>
+<br>
+
+<p><%= link_to "Back", admin_index_path %></p>
+
+<p></p>
+<p></p>
+<hr>
+  New Category
+<hr>
+<p></p>
+
+  <%= form_for @newcategory do |form| %>
+    <%= form.label :category_name %>
+    <p><%= form.text_field :category_name %>
+    <%= form.submit "Submit", class:"btn btn-sm btn-primary", id:"submit-new" %></p>
+  <% end %>
+<hr>
+<p></p>
+<p></p>
+
+<p>List of all categories</p>
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>Category</th>
+      <th></th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if !@categories.empty? %>
+      <% @categories.order(:category_name).each_with_index do |c,i| %>
+        <tr>
+          <td> 
+            <%= c.category_name %></div>
+          </td>
+          <td>  
+              <%= link_to "Edit", edit_category_path(c), class:"btn btn-sm btn-info hidden" %>
+          </td>
+          <td> 
+            <%= link_to "Delete", category_path(c), method: :delete, class:"btn btn-sm btn-danger" %>
+           </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td>No categories yet.</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+</div>
