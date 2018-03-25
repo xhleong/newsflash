@@ -1,0 +1,59 @@
+<div id='list-languages'>
+
+<p></p>
+<br>
+
+<p>List of all languages</p>
+
+<p><%= link_to "Back", admin_index_path %></p>
+
+
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>Language Code </th>
+      <th>Language Name</th>
+      <th></th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if !@languages.empty? %>
+      <% @languages.order(:language_name).each_with_index do |l,i| %>
+        <tr>
+          <td>
+            <%= l.language_code %>
+          </td>
+          <td> 
+            <%= l.language_name %>
+          </td>
+          <td>  
+              <%= link_to "Edit", edit_language_path(l), class:"btn btn-sm btn-info hidden" %>
+          </td>
+          <td> 
+            <%= link_to "Delete", language_path(l), method: :delete, class:"btn btn-sm btn-danger" %>
+           </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td>No languages yet.</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p></p>
+<p></p>
+<hr>
+  New Language
+<hr>
+<p></p>
+
+  <%= form_for @newlanguage do |form| %>
+    <p><%= form.label :language_code %> : <%= form.text_field :language_code %></p>
+    <p><%= form.label :language_name %> : <%= form.text_field :language_name %></p>
+    <%= form.submit "Submit", class:"btn btn-sm btn-primary", id:"submit-new" %>
+  <% end %>
+
+</div>

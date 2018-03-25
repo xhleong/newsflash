@@ -1,14 +1,14 @@
 <h1>Admin#index</h1>
 <p>Find me in app/views/admin/index.html.erb</p>
 
-Admin Page
+<p>Admin Page</p>
 
-<p></p>
+
 <hr>
 Manage News Options:
 
 <table class="table table-hover">
-  <thead>
+  <thead class="thead-dark">
     <tr>
       <th>Area</th>
       <th>Manage</th>
@@ -17,30 +17,27 @@ Manage News Options:
   </thead>
   <tbody>
     <tr>
-      <td>Portals</td>
-      <td>View/Manage</td>
-      <td><%= link_to 'Refresh Source Listing', refresh_sources_path, class:'btn btn-sm btn-info' %></td>
+      <td>Sources</td>
+      <td><%= link_to 'View/Manage', sources_path, class:'btn btn-sm btn-info' %></td>
+      <td><%= link_to 'Refresh Source Listing', refresh_sources_path, class:'btn btn-sm btn-warning' %></td>
     </tr>
     <tr>
       <td>Countries</td>
-      <td>View/Manage</td>
+      <td><%= link_to 'View/Manage', countries_path, class:'btn btn-sm btn-info' %></td>
       <td></td>
     </tr>
     <tr>
       <td>Languages</td>
-      <td>View/Manage</td>
+      <td><%= link_to 'View/Manage', languages_path, class:'btn btn-sm btn-info' %></td>
       <td></td>
     </tr>
       <tr>
       <td>Categories</td>
-      <td>View/Manage</td>
+      <td><%= link_to 'View/Manage', categories_path, class:'btn btn-sm btn-info' %></td>
       <td></td>
     </tr>
   </tbody>
 
 </table>
-
-
-Sources
 
 

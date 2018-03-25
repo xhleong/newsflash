@@ -14,17 +14,24 @@ class SourcesController < ApplicationController
     api = NewsApi.new
     api_info = api.get_sources['sources']
     api_source_codes = []
-    
+
+    if api_info.nil?
+      flash[:error] = "Connection Error. Please try again later"
+    else
     #update to db
       api_info.each_with_index do |source,i|
         news = api_info[i]
         
         api_source_codes << news["id"]
 
-        if Source.find_by_code(news["id"]).nil?
+        if Source.find_by_code(code=news["id"]).nil?
           Source.create(code: news["id"], name: news["name"], description: news["description"], url: news["url"], category: news["category"], language: news["language"], country_code: news["country"])
         else
-          Source.update(code: news["id"], name: news["name"], description: news["description"], url: news["url"], category: news["category"], language: news["language"], country_code: news["country"])
+          source = Source.where("code='#{news["id"]}'")
+
+          source.each_with_index do |s,i|
+            s.update(code: news["id"], name: news["name"], description: news["description"], url: news["url"], category: news["category"], language: news["language"], country_code: news["country"])
+          end
         end
       end
 
@@ -34,8 +41,8 @@ class SourcesController < ApplicationController
       end
 
       flash[:success] = "Updated"
-      redirect_to 'admin/index'
-      return
+      redirect_to admin_index_path
+    end
   end
 
   def 
@@ -48,6 +55,12 @@ class SourcesController < ApplicationController
   end
 
   def destroy
+    @source = Source.find(params[:id])
+    @source.destroy
+
+    flash[:success] = "Deleted"
+    redirect_to sources_path
+
   end
 
   private 

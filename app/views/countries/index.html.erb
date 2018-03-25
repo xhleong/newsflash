@@ -1,0 +1,58 @@
+<div id='list-countries'>
+
+<p></p>
+<br>
+
+<p>List of all countries</p>
+
+<p><%= link_to "Back", admin_index_path %></p>
+
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>Country Code </th>
+      <th>Country Name</th>
+      <th></th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if !@countries.empty? %>
+      <% @countries.order(:country_name).each_with_index do |c,i| %>
+        <tr>
+          <td>
+            <%= c.country_code %>
+          </td>
+          <td> 
+            <%= c.country_name %>
+          </td>
+          <td>  
+              <%= link_to "Edit", edit_country_path(c), class:"btn btn-sm btn-info hidden" %>
+          </td>
+          <td> 
+            <%= link_to "Delete", country_path(c), method: :delete, class:"btn btn-sm btn-danger" %>
+           </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td>No countries yet.</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p></p>
+<p></p>
+<hr>
+  New Country
+<hr>
+<p></p>
+
+  <%= form_for @newcountry do |form| %>
+    <p><%= form.label :country_code %> : <%= form.text_field :country_code %></p>
+    <p><%= form.label :country_name %> : <%= form.text_field :country_name %></p>
+    <%= form.submit "Submit", class:"btn btn-sm btn-primary", id:"submit-new" %>
+  <% end %>
+
+</div>
