@@ -2,6 +2,8 @@ class TopicsController < ApplicationController
 
   before_action :find_user
 
+  
+
   def new
     @topics = Topic.new
   end

@@ -14,6 +14,9 @@ Rails.application.routes.draw do
 
   resources :users do
     resource :topics
+    member do
+      get 'dashboard' => 'users#dashboard', as: 'dashboard'
+    end
   end
   
   resource :sessions

@@ -15,4 +15,14 @@ include HTTParty
       raise "#{response.response}"
     end
   end
+
+  def default
+    response = self.class.get("/v2/top-headlines?country=us&language=en&category=general&apiKey=#{ENV['NEWS_API_KEY']}")
+    if response.success?
+      response
+    else
+      raise "#{response.response}"
+    end
+  end
+  
 end
