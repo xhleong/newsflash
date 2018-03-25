@@ -3,11 +3,25 @@
 <p></p>
 <br>
 
-<p>List of all languages</p>
-
 <p><%= link_to "Back", admin_index_path %></p>
 
+<p></p>
+<p></p>
+<hr>
+  New Language
+<hr>
+<p></p>
 
+  <%= form_for @newlanguage do |form| %>
+    <p><%= form.label :language_code %> : <%= form.text_field :language_code %></p>
+    <p><%= form.label :language_name %> : <%= form.text_field :language_name %></p>
+    <%= form.submit "Submit", class:"btn btn-sm btn-primary", id:"submit-new" %>
+  <% end %>
+<hr>
+<p></p>
+<p></p>
+
+<p>List of all languages</p>
 <table class="table table-hover">
   <thead class="thead-dark">
     <tr>
@@ -42,18 +56,5 @@
     <% end %>
   </tbody>
 </table>
-
-<p></p>
-<p></p>
-<hr>
-  New Language
-<hr>
-<p></p>
-
-  <%= form_for @newlanguage do |form| %>
-    <p><%= form.label :language_code %> : <%= form.text_field :language_code %></p>
-    <p><%= form.label :language_name %> : <%= form.text_field :language_name %></p>
-    <%= form.submit "Submit", class:"btn btn-sm btn-primary", id:"submit-new" %>
-  <% end %>
 
 </div>

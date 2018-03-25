@@ -3,10 +3,26 @@
 <p></p>
 <br>
 
-<p>List of all countries</p>
-
 <p><%= link_to "Back", admin_index_path %></p>
 
+<p></p>
+<p></p>
+<hr>
+  Add new Country
+<hr>
+<p></p>
+
+  <%= form_for @newcountry do |form| %>
+    <p><%= form.label :country_code %> : <%= form.text_field :country_code %></p>
+    <p><%= form.label :country_name %> : <%= form.text_field :country_name %></p>
+    <%= form.submit "Submit", class:"btn btn-sm btn-primary", id:"submit-new" %>
+  <% end %>
+<hr>
+<p></p>
+<p></p>
+
+
+<p>List of all countries</p>
 <table class="table table-hover">
   <thead class="thead-dark">
     <tr>
@@ -41,18 +57,4 @@
     <% end %>
   </tbody>
 </table>
-
-<p></p>
-<p></p>
-<hr>
-  New Country
-<hr>
-<p></p>
-
-  <%= form_for @newcountry do |form| %>
-    <p><%= form.label :country_code %> : <%= form.text_field :country_code %></p>
-    <p><%= form.label :country_name %> : <%= form.text_field :country_name %></p>
-    <%= form.submit "Submit", class:"btn btn-sm btn-primary", id:"submit-new" %>
-  <% end %>
-
 </div>

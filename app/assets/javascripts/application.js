@@ -17,9 +17,3 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
-
-submitNew = document.getElementById('submit-new')
-
-submitNew.onclick = function(event){
-  document.getElementById('category_category_name').resetForm();
-}

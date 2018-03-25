@@ -3,11 +3,25 @@
 <p></p>
 <br>
 
-<p>List of all categories</p>
-
 <p><%= link_to "Back", admin_index_path %></p>
 
+<p></p>
+<p></p>
+<hr>
+  New Category
+<hr>
+<p></p>
 
+  <%= form_for @newcategory do |form| %>
+    <%= form.label :category_name %>
+    <p><%= form.text_field :category_name %>
+    <%= form.submit "Submit", class:"btn btn-sm btn-primary", id:"submit-new" %></p>
+  <% end %>
+<hr>
+<p></p>
+<p></p>
+
+<p>List of all categories</p>
 <table class="table table-hover">
   <thead class="thead-dark">
     <tr>
@@ -39,17 +53,6 @@
   </tbody>
 </table>
 
-<p></p>
-<p></p>
-<hr>
-  New Category
-<hr>
-<p></p>
 
-  <%= form_for @newcategory do |form| %>
-    <%= form.label :category_name %>
-    <p><%= form.text_field :category_name %>
-    <%= form.submit "Submit", class:"btn btn-sm btn-primary", id:"submit-new" %></p>
-  <% end %>
 
 </div>
