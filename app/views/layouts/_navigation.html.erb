@@ -40,7 +40,7 @@
 
 <br>
 
-<% if !current_user.admin? %>
+<% if !current_user.nil? && !current_user.admin? %>
 <div class="form-group" style="display:inline-flex;">
   <%= form_tag search_sources_path, id:"search", method: :get do %>
     <%= text_field_tag :check_sources,"", class:"col-10 form-control", placeholder:"Search Portals"%>

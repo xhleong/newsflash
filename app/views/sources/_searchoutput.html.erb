@@ -1,0 +1,28 @@
+
+  <p>Results for <%=@custom_info[0]["source"]["name"]%></p>
+
+  <div style="width: 100%; display:flex; flex-wrap: wrap; justify-content: center;">
+
+  <% @custom_info.each do |a| %>
+   <div class="card" style="width:40%; margin: 3%">
+          <% if !a["urlToImage"].nil? %>
+            <%= image_tag a["urlToImage"], class:"card-img-top"%>
+          <% else %>
+            <%= image_tag 'http://www.volusia.com/wp-content/uploads/2013/07/news.jpg', class:"card-img-top"%>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= a['title']%></h5>
+            <div class="card-text">
+              <p>
+                <%= a["source"]["name"] %> | <%= a["author"] %> | <%= a["publishedAt"].to_time %>
+              </p>
+              <p>
+                <%= a["description"] %>
+              </p>
+            </div>
+              <%= link_to "Read Full Article", "#{a['url']}", class:"btn btn-sm btn-primary", target: :_blank %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+  

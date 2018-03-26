@@ -2,7 +2,8 @@ require 'news_api'
 
 class SourcesController < ApplicationController
   before_action :authorize
-  before_action :check_admin, except: [:search]
+  before_action :check_admin, except: [:search, :custom]
+
 
   def index
     @sources = Source.all
@@ -16,10 +17,10 @@ class SourcesController < ApplicationController
     end
   end
 
-  def custom_source
+  def custom
     news = params[:news]
     api = NewsApi.new
-    @custom_info = api.custom(news)['sources']
+    @custom_info = api.custom_source(params[:news])['articles']
 
     if @custom_info.nil?
       flash[:error] = "Connection Error. Please try again later"

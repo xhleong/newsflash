@@ -25,12 +25,13 @@ class NewsApi
     end
   end
 
-  def custom(news)
+  def custom_source(news)
     response = self.class.get("/v2/top-headlines?sources=#{news}&apiKey=#{ENV['NEWS_API_KEY']}")
     if response.success?
       response
     else
       raise "#{response.response}"
     end
+  end
   
 end
