@@ -1,4 +1,17 @@
+require 'news_api'
+
 class UsersController < ApplicationController
+
+  before_action :authorize, only: [:dashboard, :show, :edit, :update]
+  
+  def dashboard
+    @user = User.find(params[:id])
+
+    #call default api
+    api = NewsApi.new
+    @api_default = api.default['articles']
+
+  end
 
   def new
     @user = User.new
@@ -21,10 +34,11 @@ class UsersController < ApplicationController
 
 private
 
-def user_params
-  params.require(:user).permit(:name, :email, :password)
-end
+  def user_params
+    params.require(:user).permit(:name, :email, :password)
+  end
 
 
 end
+
 
