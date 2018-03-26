@@ -2,10 +2,33 @@ require 'news_api'
 
 class SourcesController < ApplicationController
   before_action :authorize
-  before_action :check_admin
+  before_action :check_admin, except: [:search]
 
   def index
     @sources = Source.all
+  end
+
+  def search
+    @sources = Source.all
+
+    filter_params(params).each do |key,value|
+      @sources = @sources.public_send(key,value) if value.present?
+    end
+  end
+
+  def custom_source
+    news = params[:news]
+    api = NewsApi.new
+    @custom_info = api.custom(news)['sources']
+
+    if @custom_info.nil?
+      flash[:error] = "Connection Error. Please try again later"
+    end
+
+    respond_to do |format|
+      format.js
+    end
+
   end
 
   #set daily schedule to run. include button for manual run
@@ -64,6 +87,10 @@ class SourcesController < ApplicationController
   end
 
   private 
+  def filter_params(param)
+    params.slice(:check_sources)
+  end
+
   def source_params
     params.require(:source).permit(:code, :name, :description, :url, :category, :language, :country_code)
   end

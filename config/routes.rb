@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   resources :sources do
     collection do
       get 'refresh', to: 'sources#import_sources', as: 'refresh'
+      get 'search', to: 'sources#search', as: 'search'
+      get 'custom', to: 'sources#custom_source', as: 'custom'
     end
   end
 

@@ -9,7 +9,13 @@ class UsersController < ApplicationController
 
     #call default api
     api = NewsApi.new
+
     @api_default = api.default['articles']
+
+    if api.default['articles'].nil?
+      flash[:error] = "Site is currently not working. Please try again later"
+      redirect_to dashboard_user_path(current_user)
+    end
 
   end
 

@@ -1,0 +1,40 @@
+<script>
+        $(document).on('turbolinks:load', function () {
+            $('#search-results').empty().removeClass('fade-in').addClass('fade-in').append('<%= j render "sources/custom_source" %>');
+        });
+    </script>
+
+
+<% if @sources.empty? %>
+  No results
+<% else %>
+  <% @sources.each do |source| %>
+    <p><%= link_to "#{source.name}", custom_sources_path(news: source.code), class:"btn btn-sm btn-primary" %></p>
+  <% end %>
+<% end %>
+
+<div id="search-results">
+
+</div>
+<div id="news" style="width: 100%; display:flex; flex-wrap: wrap;">
+  <%# if @user.topic.nil? %>
+    <%# @api_default.each do |a| %>
+      <div class="card" style="width:40%; margin: 3%">
+        <%#= image_tag a["urlToImage"], class:"card-img-top"%>
+        <div class="card-body">
+          <h5 class="card-title"><%#= a['title']%></h5>
+          <div class="card-text">
+            <p>
+              <%#= a["source"]["name"] %> | <%#= a["author"] %> | <%#= a["publishedAt"].to_time %>
+            </p>
+            <p>
+              <%#= a["description"] %>
+            </p>
+          </div>
+            <%#= link_to "Read Full Article", "#{a['url']}" %>
+        </div>
+      </div>
+    <%# end %>
+  <%# end %>
+</div>
+
