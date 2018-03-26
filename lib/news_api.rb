@@ -17,7 +17,10 @@ include HTTParty
   end
 
   def default
-    response = self.class.get("/v2/top-headlines?country=us&language=en&category=general&apiKey=#{ENV['NEWS_API_KEY']}")
+    default_country = 'us'
+    default_language = 'en'
+    default category = 'general'
+    response = self.class.get("/v2/top-headlines?country=#{default_country}&language=#{default_language}&category=#{default_category}&apiKey=#{ENV['NEWS_API_KEY']}")
     if response.success?
       response
     else

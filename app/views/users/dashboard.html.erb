@@ -1,27 +1,23 @@
-<% if @user.topic.nil? %>
 
-  <div id="news" style="width: 100%; display:flex; align-items: center; justify-content: center">
-  <div class="card" style="width: 80%;">
-  <img class="card-img-top" src="https://pagefair.com/wp-content/uploads/2013/09/blog6.jpg" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-</div>
-
-<div class="jumbotron jumbotron-fluid">
-  <div class = "container">
-<div class="media">
-  <img class="align-self-center mr-3" src="https://pagefair.com/wp-content/uploads/2013/09/blog6.jpg" alt="Generic placeholder image" style="width:30%">
-  <div class="media-body">
-    <h5 class="mt-0">Center-aligned media</h5>
-    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-    <p class="mb-0">Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-  </div>
-</div>
-</div>
+<div id="news" style="width: 100%; display:flex; flex-wrap: wrap;">
+  <% if @user.topic.nil? %>
+    <% @api_default.each do |a| %>
+      <div class="card" style="width:40%; margin: 3%">
+        <%= image_tag a["urlToImage"], class:"card-img-top"%>
+        <div class="card-body">
+          <h5 class="card-title"><%= a['title']%></h5>
+          <div class="card-text">
+            <p>
+              <%= a["source"]["name"] %> | <%= a["author"] %> | <%= a["publishedAt"].to_time %>
+            </p>
+            <p>
+              <%= a["description"] %>
+            </p>
+          </div>
+            <%= link_to "Read Full Article", "#{a['url']}" %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 </div>
 
-<% end %>
