@@ -14,6 +14,31 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+
+// let list = document.getElementById("list")
+
+// document.addEventListener("DOMContentLoaded",function(event){
+
+//   $("#search").keypress(function(e){
+//     $.ajax({
+//       url: "/sources/search",
+//       method : "POST",
+//       data: $(this).serialize(),
+//       success: function(data){
+//         console.log(data)
+//         data.forEach(function(element){
+//           var option = document.createElement("option")
+          
+//           option.value = element
+
+//           list.appendChild(option)
+
+//         })
+//       }
+//     })
+
+//   })
+
+// })

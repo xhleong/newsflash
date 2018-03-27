@@ -1,0 +1,27 @@
+<%= provide :js do %>
+
+    <!-- initial search load -->
+    <script>
+        $(document).on('turbolinks:load', function () {
+        });
+    </script>
+
+<% end %>
+
+
+<% if @sources.empty? %>
+  No results
+<% else %>
+<div style="display:flex; flex-wrap: wrap; justify-content: space-around;">
+  <% @sources.each do |source| %>
+    <p><%= link_to "#{source.name}", custom_sources_path(news: source.code),remote: :true, class:"btn btn-sm btn-primary" %></p>
+  <% end %>
+<% end %>
+</div>
+<hr>
+<p></p>
+
+
+<div class="container" id="search-results">
+  <p> Pick your preferred source </p>
+</div>

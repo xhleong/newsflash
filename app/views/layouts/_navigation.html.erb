@@ -8,16 +8,17 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" id="nav-item" style="margin-left: 1em">
-        PREFERENCE
+        <% if current_user %>
+          <% if !current_user.admin? %>
+            <%= link_to 'DASHBOARD', dashboard_user_path(current_user) %>
+          <% else %>
+            <%= link_to 'ADMIN DASHBOARD', admin_index_path %>
+          <% end %>
+        <% end %>
       </li>
-      <li class="nav-item" id="nav-item">
-
-      </li>
-
     </ul>
-    
 
-      <div class="login-area ml-sm-2">
+      <div class="login-area ml-sm-2 navbar-right">
       <% if current_user %>
         Hi
         <% if current_user.admin? %>
@@ -36,3 +37,15 @@
 
   </div>
 </nav>
+
+<br>
+
+<% if !current_user.nil? && !current_user.admin? %>
+<div class="form-group" style="display:inline-flex;">
+  <%= form_tag search_sources_path, id:"search", method: :get do %>
+    <%= text_field_tag :check_sources,"", class:"col-10 form-control", placeholder:"Search Portals"%>
+    <%= submit_tag "Search", class:"btn btn-sm btn-info"%>
+<!--     <datalist id="list"></datalist> -->
+  <% end %>
+</div>
+<% end %>

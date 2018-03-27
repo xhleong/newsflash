@@ -1,9 +1,13 @@
 
-<div id="news" style="width: 100%; display:flex; flex-wrap: wrap;">
+<div class="container" id="news" style="width: 100%; display:flex; flex-wrap: wrap; justify-content: center;">
   <% if @user.topic.nil? %>
     <% @api_default.each do |a| %>
       <div class="card" style="width:40%; margin: 3%">
-        <%= image_tag a["urlToImage"], class:"card-img-top"%>
+        <% if !a["urlToImage"].nil? %>
+          <%= image_tag a["urlToImage"], class:"card-img-top"%>
+        <% else %>
+          <%= image_tag 'http://www.volusia.com/wp-content/uploads/2013/07/news.jpg', class:"card-img-top"%>
+        <% end %>
         <div class="card-body">
           <h5 class="card-title"><%= a['title']%></h5>
           <div class="card-text">
@@ -14,7 +18,7 @@
               <%= a["description"] %>
             </p>
           </div>
-            <%= link_to "Read Full Article", "#{a['url']}" %>
+            <%= link_to "Read Full Article", "#{a['url']}", class:"btn btn-sm btn-primary", target: :_blank %>
         </div>
       </div>
     <% end %>

@@ -15,13 +15,6 @@
       <div class = "alert alert-<%= key %>"><%= value %></div>
     <% end %>
 
-    <% if !current_user.nil?  && !current_user.admin %>
-      <div>
-        Search Area
-      </div>
-    <% end %>
-    <div class="container">
       <%= yield %>
-    </div>
   </body>
 </html>
