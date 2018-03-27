@@ -11,10 +11,12 @@ RSpec.describe User, type: :model do
   context "validation: " do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:email) }
+
     it "should validate uniqueness of email" do
       x = User.new(name: abc, email: valid_email, password: valid_password)
       expect{x.save}.to be_false
     end
+    
     it { is_expected.to have_secure_password}
   end
 
