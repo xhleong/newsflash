@@ -55,7 +55,7 @@ class SessionsController < ApplicationController
     if current_user.admin
       redirect_to @next_admin
     else
-      redirect_to @next
+      redirect_to @next_user
     end
   
   end
