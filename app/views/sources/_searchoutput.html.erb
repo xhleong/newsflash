@@ -4,7 +4,7 @@
   <div style="width: 100%; display:flex; flex-wrap: wrap; justify-content: center;">
 
   <% @custom_info.each do |a| %>
-   <div class="card" style="width:40%; margin: 3%">
+   <div class="card news-box" style=" margin: 3%">
           <% if !a["urlToImage"].nil? %>
             <%= image_tag a["urlToImage"], class:"card-img-top"%>
           <% else %>
