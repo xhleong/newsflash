@@ -32,7 +32,7 @@ class SourcesController < ApplicationController
 
   end
 
-  #set daily schedule to run. include button for manual run
+  #button for manual run
   def import_sources
     #call api
     api = NewsApi.new
@@ -72,11 +72,11 @@ class SourcesController < ApplicationController
   def 
 
   #manually create sources -- add if theres time
-  def new
-  end
+  # def new
+  # end
 
-  def create
-  end
+  # def create
+  # end
 
   def destroy
     @source = Source.find(params[:id])

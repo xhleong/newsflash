@@ -4,21 +4,6 @@ class UsersController < ApplicationController
 
   before_action :authorize, only: [:dashboard, :show, :edit, :update]
   
-  def dashboard
-    @user = User.find(params[:id])
-
-    #call default api
-    api = NewsApi.new
-
-    @api_default = api.default['articles']
-
-    if api.default['articles'].nil?
-      flash[:error] = "Site is currently not working. Please try again later"
-      redirect_to dashboard_user_path(current_user)
-    end
-
-  end
-
   def new
     @user = User.new
   end
@@ -29,7 +14,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:success] = "Successfully signed up"
-      redirect_to root_url
+      redirect_to dashboard_user_path
     else
       flash[:error] = "Failed to create"
       render "new"
@@ -37,6 +22,20 @@ class UsersController < ApplicationController
 
   end
 
+  def dashboard
+      @user = User.find(params[:id])
+
+      #call default api
+      api = NewsApi.new
+
+      @api_default = api.default['articles']
+
+      if api.default['articles'].nil?
+        flash[:error] = "Site is currently not working. Please try again later"
+        redirect_to dashboard_user_path(current_user)
+      end
+
+    end
 
 private
 

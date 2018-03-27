@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_secure_password
 
   validates :email, uniqueness: true
+  validates :email, presence:true
   validates :name, presence: true
 
   def self.create_with_auth_and_hash(authentication, auth_hash)
