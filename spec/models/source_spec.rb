@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Source, type: :model do
 
-source = Source.new(code: 'abc', name: 'abc-news', description:"abc news is the best", url:"www.news.com", category: "business", language: 'en', country_code:'MY')
+source = Source.create(code: 'abc', name: 'abc-news', description:"abc news is the best", url:"www.news.com", category: "business", language: 'en', country_code:'MY')
 
 
   context "validation: " do
@@ -12,7 +12,7 @@ source = Source.new(code: 'abc', name: 'abc-news', description:"abc news is the 
 
   context "search" do
     it "should find the results by source" do
-      source
+      # source
       result = Source.check_sources(source.name)
 
       expect{(result).to eq([source])}
